@@ -1,47 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MOKEPON!</title>
+    <link rel="stylesheet" href="./js/styles.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MOKEPON!</title>
-</head>
+  <body>
+    <section id="select-pet">
+      <h1 class="title">MOKEPON! 🔥💧🌱</h1>
+      <h2>Elige tu mokepon:</h2>
 
-<body>
-  <h1>MOKEPON! 🔥💧🌱</h1>
-  <section id="select-pet">
-    <h2>Elige tu mokepon:</h2>
-    <input type="radio" name="mokepon" id="hipodoge">
-    <label for="hipodoge">Hipodoge</label>
-    <input type="radio" name="mokepon" id="capipepo">
-    <label for="capipepo">Capipepo</label>
-    <input type="radio" name="mokepon" id="ratigueya">
-    <label for="ratigueya">Ratigueya</label>
-    <button id="button-pet">Seleccionar</button>
-  </section>
-  <!-- 
-  Langostelvis -> Agua y Fuego 
-  Tucapalma -> Agua y Tierra 
-  Pydos -> Tierra y Fuego -->
-  <section id="select-attack">
-    <h2>Elige tu ataque:</h2>
-    <p>Tu mokepon <span id="player-pet"></span> tiene <span
-        id="player-lives">3</span> vidas</p>
-    <p>El mokepon <span id="enemy-pet"></span> del rival tiene <span
-        id="enemy-lives">3</span> vidas</p>
-    <p>
-      <button id="button-fire">Fuego 🔥</button>
-      <button id="button-water">Agua 💧</button>
-      <button id="button-earth">Tierra 🌱</button>
-    </p>
-  </section>
-  <section id="messages">
-  </section>
-  <section id="restart">
-    <button id="button-restart">Reiniciar</button>
-  </section>
-  <script src="./js/mokepon.js"></script>
-</body>
+      <input type="radio" name="mokepon" id="hipodoge" />
+      <label for="hipodoge">Hipodoge</label>
+      <input type="radio" name="mokepon" id="capipepo" />
+      <label for="capipepo">Capipepo</label>
+      <input type="radio" name="mokepon" id="ratigueya" />
+      <label for="ratigueya">Ratigueya</label>
+      <button id="button-pet">Seleccionar</button>
+    </section>
 
+    <!-- Langostelvis -> Agua y Fuego 
+    Tucapalma -> Agua y Tierra 
+    Pydos -> Tierra y Fuego -->
+
+    <section id="select-attack">
+      <h1 class="title">MOKEPON! 🔥💧🌱</h1>
+      <h2>Elige tu ataque:</h2>
+
+      <p>
+        Tu mokepon <span id="player-pet"></span> tiene
+        <span id="player-lives">3</span> vidas
+      </p>
+      <p>
+        El mokepon <span id="enemy-pet"></span> del rival tiene
+        <span id="enemy-lives">3</span> vidas
+      </p>
+      <p>
+        <button id="button-fire">Fuego 🔥</button>
+        <button id="button-water">Agua 💧</button>
+        <button id="button-earth">Tierra 🌱</button>
+      </p>
+    </section>
+
+    <section id="messages"></section>
+
+    <section id="restart">
+      <button id="button-restart">Reiniciar</button>
+    </section>
+
+    <script src="./js/mokepon.js"></script>
+  </body>
 </html>

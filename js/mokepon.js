@@ -4,6 +4,12 @@ let playerLives = 3
 let enemyLives = 3
 
 function startGame() {
+  let sectionSelectAttack = document.getElementById('select-attack')
+  sectionSelectAttack.style.display = 'none'
+
+  let sectionRestart = document.getElementById('restart')
+  sectionRestart.style.display = 'none'
+
   let buttonSelectPet = document.getElementById('button-pet')
   buttonSelectPet.addEventListener('click', selectPlayerPet)
 
@@ -13,9 +19,18 @@ function startGame() {
   buttonWater.addEventListener('click', waterAttack)
   let buttonEarth = document.getElementById('button-earth')
   buttonEarth.addEventListener('click', earthAttack)
+
+  let buttonRestart = document.getElementById('button-restart')
+  buttonRestart.addEventListener('click', restartGame)
 }
 
 function selectPlayerPet() {
+  let sectionSelectPet = document.getElementById('select-pet')
+  sectionSelectPet.style.display = 'none'
+
+  let sectionSelectAttack = document.getElementById('select-attack')
+  sectionSelectAttack.style.display = 'block'
+
   let inputHipodoge = document.getElementById('hipodoge')
   let inputCapipepo = document.getElementById('capipepo')
   let inputRatigueya = document.getElementById('ratigueya')
@@ -27,6 +42,11 @@ function selectPlayerPet() {
     spanPlayerPet.innerHTML = 'Capipepo'
   } else if (inputRatigueya.checked) {
     spanPlayerPet.innerHTML = 'Ratigueya'
+  } else {
+    alert('Seleccione un mokepon')
+    sectionSelectPet.style.display = 'block'
+    sectionSelectAttack.style.display = 'none'
+    // restartGame()
   }
   selectEnemyPet()
 }
@@ -96,7 +116,7 @@ function reviewLives() {
   if (enemyLives == 0) {
     createEndMessage('Felicitaciones 🎉')
   } else if (playerLives == 0) {
-    createEndMessage('Lo siento, perdistes ☹')
+    createEndMessage('Lo siento, perdistes 😞')
   }
 }
 
@@ -116,6 +136,20 @@ function createEndMessage(finalScore) {
   paragraph.innerHTML = finalScore
 
   sectionMessages.appendChild(paragraph)
+
+  let buttonFire = document.getElementById('button-fire')
+  buttonFire.disabled = true
+  let buttonWater = document.getElementById('button-water')
+  buttonWater.disabled = true
+  let buttonEarth = document.getElementById('button-earth')
+  buttonEarth.disabled = true
+
+  let sectionRestart = document.getElementById('restart')
+  sectionRestart.style.display = 'block'
+}
+
+function restartGame() {
+  location.reload()
 }
 
 function aleatory(min, max) {
