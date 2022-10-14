@@ -33,15 +33,15 @@ function selectPlayerPet() {
 
   let inputHipodoge = document.getElementById('hipodoge')
   let inputCapipepo = document.getElementById('capipepo')
-  let inputRatigueya = document.getElementById('ratigueya')
+  let inputTorchigueya = document.getElementById('torchigueya')
   let spanPlayerPet = document.getElementById('player-pet')
 
   if (inputHipodoge.checked) {
     spanPlayerPet.innerHTML = 'Hipodoge'
   } else if (inputCapipepo.checked) {
     spanPlayerPet.innerHTML = 'Capipepo'
-  } else if (inputRatigueya.checked) {
-    spanPlayerPet.innerHTML = 'Ratigueya'
+  } else if (inputTorchigueya.checked) {
+    spanPlayerPet.innerHTML = 'Torchigueya'
   } else {
     alert('Seleccione un mokepon')
     sectionSelectPet.style.display = 'block'
@@ -60,7 +60,7 @@ function selectEnemyPet() {
   } else if (aleatoryPet == 2) {
     spanEnemyPet.innerHTML = 'Capipepo'
   } else {
-    spanEnemyPet.innerHTML = 'Ratigueya'
+    spanEnemyPet.innerHTML = 'Torchigueya'
   }
 }
 
