@@ -21,12 +21,10 @@ body {
   align-items: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
 
 .title-image {
   height: 197px;
-  margin-bottom: 30px;
   margin-top: 60px;
   text-align: center;
   width: 655px;
@@ -35,7 +33,7 @@ body {
 .caption-image {
   height: 64px;
   margin-bottom: 30px;
-  margin-top: 20px;
+  margin-top: 10px;
   text-align: center;
   width: 362px;
 }
@@ -73,6 +71,7 @@ body {
 
 .mokepon-card p {
   font-size: 24px;
+  font-weight: 700;
   margin-bottom: 20px;
   text-align: center;
 }
@@ -81,18 +80,81 @@ input {
   display: none;
 }
 
-#button-pet {
-  background: white;
-  border: 2px solid gold;
-  border-radius: 20px;
-  color: black;
+.button-pet {
+  background: #ffcd00;
+  border: 2px solid #ffcd00;
+  border-radius: 30px;
+  color: #356abc;
   display: inline-block;
   font-family: "Poppins", sans-serif;
   font-size: 24px;
   font-weight: 700;
-
   margin-top: 30px;
-  padding: 6px 80px;
+  padding: 5px 60px;
   position: relative;
-  text-transform: uppercase;
+  transition: color 0.5s, background 1s;
+}
+
+.button-pet:hover {
+  background-color: transparent;
+  background-color: #356abc;
+  color: #ffcd00;
+}
+
+.button-pet:active {
+  box-shadow: inset 0 0 20px #ffcd00;
+}
+
+#select-attack {
+  align-items: center;
+  /* display: flex; Lo esta tomando del js*/
+  flex-direction: column;
+}
+
+.elements {
+  display: flex;
+  gap: 80px;
+}
+
+.button-card {
+  align-items: center;
+  aspect-ratio: 1 / 1;
+  backdrop-filter: blur(5px);
+  background: rgba(255, 255, 255, 0.27);
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0px 1px 10px rgb(255, 255, 255);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 200px;
+  overflow: hidden;
+  transition: all 400ms ease;
+}
+
+.button-card:hover {
+  box-shadow: 5px 5px 20px rgb(255, 255, 255);
+}
+
+.button-card img {
+  width: 50%;
+}
+
+.name-elements {
+  background: #356abc;
+  border-radius: 6px;
+  box-shadow: 0px 1px 10px rgb(255, 255, 255);
+  color: white;
+  cursor: pointer;
+  font-size: 24px;
+  font-weight: 700;
+  margin: 10px;
+  overflow: hidden;
+  text-align: center;
+  transition: all 400ms ease;
+}
+
+.name-elements:hover {
+  box-shadow: 5px 5px 20px rgb(255, 255, 255);
 }

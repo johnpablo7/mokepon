@@ -11,10 +11,10 @@
   <body>
     <section id="select-pet">
       <div class="title-image">
-        <img src="../assets/mokepon-title.png" alt="title" />
+        <img src="../assets/mokepon-title.png" alt="titulo-mascota" />
       </div>
       <div class="caption-image">
-        <img src="../assets/caption.png" alt="caption" />
+        <img src="../assets/caption.png" alt="subtitulo-mascota" />
       </div>
 
       <div class="container">
@@ -43,7 +43,7 @@
         </div>
       </div>
 
-      <button id="button-pet">Seleccionar</button>
+      <button class="button-pet">Elígelo ya!</button>
     </section>
 
     <!-- Langostelvis -> Agua y Fuego 
@@ -51,28 +51,55 @@
     Pydos -> Tierra y Fuego -->
 
     <section id="select-attack">
-      <h1 class="title">MOKEPON! 🔥💧🌱</h1>
-      <h2>Elige tu ataque:</h2>
+      <div class="title-image">
+        <img src="../assets/mokepon-title.png" alt="titulo-ataque">
+      </div>
+      <div class="caption-image">
+        <img src="../assets/caption-section-two.png" alt="subtitulo-ataque" />
+      </div>
 
-      <p>
-        Tu mokepon <span id="player-pet"></span> tiene
-        <span id="player-lives">3</span> vidas
-      </p>
-      <p>
-        El mokepon <span id="enemy-pet"></span> del rival tiene
-        <span id="enemy-lives">3</span> vidas
-      </p>
-      <p>
-        <button id="button-fire">Fuego 🔥</button>
-        <button id="button-water">Agua 💧</button>
-        <button id="button-earth">Tierra 🌱</button>
-      </p>
-    </section>
+      <div class="elements">
 
-    <section id="messages"></section>
+        <div id="button-fire">
+          <button class="button-card">
+            <img src="../assets/medalla-fuego.png" alt="fuego">
+          </button>
+          <p class="name-elements">Fuego</p>
+        </div>
 
-    <section id="restart">
-      <button id="button-restart">Reiniciar</button>
+        <div id="button-water">
+          <button  class="button-card">
+            <img src="../assets/medalla-agua.png" alt="agua">
+          </button>
+          <p class="name-elements">Agua</p>
+        </div>
+
+        <div id="button-earth">
+          <button  class="button-card">
+            <img src="../assets/medalla-tierra.png" alt="tierra">
+          </button>
+          <p class="name-elements">Tierra</p>
+        </div>
+      </div>
+
+      <div>
+        <section id="messages"></section>
+        <section id="restart">
+          <button id="button-restart">Reiniciar</button>
+        </section>
+      </div>
+
+      <div>
+        <p>
+          Tu mokepon <span id="player-pet"></span> tiene
+          <span id="player-lives">3</span> vidas
+        </p>
+        <p>
+          El mokepon <span id="enemy-pet"></span> del rival tiene
+          <span id="enemy-lives">3</span> vidas
+        </p>
+      </div>
+
     </section>
 
     <script src="./js/mokepon.js"></script>

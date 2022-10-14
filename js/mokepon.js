@@ -10,7 +10,7 @@ function startGame() {
   let sectionRestart = document.getElementById('restart')
   sectionRestart.style.display = 'none'
 
-  let buttonSelectPet = document.getElementById('button-pet')
+  let buttonSelectPet = document.querySelector('.button-pet')
   buttonSelectPet.addEventListener('click', selectPlayerPet)
 
   let buttonFire = document.getElementById('button-fire')
@@ -29,7 +29,7 @@ function selectPlayerPet() {
   sectionSelectPet.style.display = 'none'
 
   let sectionSelectAttack = document.getElementById('select-attack')
-  sectionSelectAttack.style.display = 'block'
+  sectionSelectAttack.style.display = 'flex'
 
   let inputHipodoge = document.getElementById('hipodoge')
   let inputCapipepo = document.getElementById('capipepo')
@@ -44,7 +44,7 @@ function selectPlayerPet() {
     spanPlayerPet.innerHTML = 'Torchigueya'
   } else {
     alert('Seleccione un mokepon')
-    sectionSelectPet.style.display = 'block'
+    sectionSelectPet.style.display = 'flex'
     sectionSelectAttack.style.display = 'none'
     // restartGame()
   }
