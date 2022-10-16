@@ -52,56 +52,57 @@
 
     <section id="select-attack">
       <div class="title-image">
-        <img src="../assets/mokepon-title.png" alt="titulo-ataque">
+        <img src="../assets/mokepon-title.png" alt="titulo-ataque" />
       </div>
       <div class="caption-image">
         <img src="../assets/caption-section-two.png" alt="subtitulo-ataque" />
       </div>
 
       <div class="elements">
-
         <div id="button-fire">
           <button class="button-card">
-            <img src="../assets/medalla-fuego.png" alt="fuego">
+            <img src="../assets/medalla-fuego.png" alt="fuego" />
           </button>
           <p class="name-elements">Fuego</p>
         </div>
 
         <div id="button-water">
-          <button  class="button-card">
-            <img src="../assets/medalla-agua.png" alt="agua">
+          <button class="button-card">
+            <img src="../assets/medalla-agua.png" alt="agua" />
           </button>
           <p class="name-elements">Agua</p>
         </div>
 
         <div id="button-earth">
-          <button  class="button-card">
-            <img src="../assets/medalla-tierra.png" alt="tierra">
+          <button class="button-card">
+            <img src="../assets/medalla-tierra.png" alt="tierra" />
           </button>
           <p class="name-elements">Tierra</p>
         </div>
       </div>
 
-      <div>
-        <section id="messages"></section>
+      <div class="container-attack">
+        <div class="attacks-player">
+          <p id="player-pet"></p>
+          <p id="player-lives"></p>
+          <div id="player-attack"></div>
+        </div>
+
+        <div class="attacks-enemy">
+          <p id="enemy-pet"></p>
+          <p id="enemy-lives"></p>
+          <div id="enemy-attack"></div>
+        </div>
+      </div>
+
+      <div id="messages">
+        <p id="result"></p>
         <section id="restart">
-          <button id="button-restart">Reiniciar</button>
+          <button id="button-restart">VOLVER A JUGAR</button>
         </section>
       </div>
 
-      <div>
-        <p>
-          Tu mokepon <span id="player-pet"></span> tiene
-          <span id="player-lives">3</span> vidas
-        </p>
-        <p>
-          El mokepon <span id="enemy-pet"></span> del rival tiene
-          <span id="enemy-lives">3</span> vidas
-        </p>
-      </div>
-
     </section>
-
     <script src="./js/mokepon.js"></script>
   </body>
 </html>
