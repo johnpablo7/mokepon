@@ -104,17 +104,17 @@ function battle() {
   spanEnemyLives.innerHTML = enemyLives;
 
   if (enemyAttack == playerAttack) {
-    createMessage("Empate");
+    createMessage("EMPATE");
   } else if (
     (playerAttack == "Fuego" && enemyAttack == "Tierra") ||
     (playerAttack == "Agua" && enemyAttack == "Fuego") ||
     (playerAttack == "Tierra" && enemyAttack == "Agua")
   ) {
-    createMessage("Ganaste");
+    createMessage("GANASTE");
     enemyLives--;
     spanEnemyLives.innerHTML = enemyLives;
   } else {
-    createMessage("Perdiste");
+    createMessage("PERDISTE");
     playerLives--;
     spanPlayerLives.innerHTML = playerLives;
   }
@@ -124,7 +124,7 @@ function battle() {
 
 function reviewLives() {
   if (enemyLives == 0) {
-    createEndMessage("¡FELICITACIONES! Ganaste✨");
+    createEndMessage("¡FELICITACIONES! Ganaste ✨");
   } else if (playerLives == 0) {
     createEndMessage("¡LO SIENTO! perdiste 💀");
   }

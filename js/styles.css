@@ -25,14 +25,14 @@ body {
 
 .title-image {
   height: 197px;
-  margin-top: 80px;
+  margin-top: 60px;
   text-align: center;
   width: 655px;
 }
 
 .caption-image {
   height: 64px;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   margin-top: 20px;
   text-align: center;
   width: 362px;
@@ -69,6 +69,7 @@ body {
 }
 
 .mokepon-card p {
+  color: #212529;
   font-size: 24px;
   font-weight: 700;
   margin-bottom: 20px;
@@ -88,11 +89,11 @@ input:checked + label {
 }
 
 .button-pet,
-#button-restart {
-  background: #ffcd00;
+.button-restart {
+  background: #356abc;
   border: 2px solid #ffcd00;
   border-radius: 30px;
-  color: #356abc;
+  color: #ffcd00;
   cursor: pointer;
   display: inline-block;
   font-family: "Poppins", sans-serif;
@@ -106,8 +107,9 @@ input:checked + label {
 
 .button-pet:hover {
   background-color: transparent;
-  background-color: #356abc;
-  color: #ffcd00;
+  background-color: #ffcd00;
+  border: 2px solid #356abc;
+  color: #356abc;
 }
 
 .button-pet:active {
@@ -115,8 +117,8 @@ input:checked + label {
 }
 
 #select-attack {
-  align-items: center;
   /* display: flex; Lo esta tomando del js*/
+  align-items: center;
   flex-direction: column;
 }
 
@@ -170,17 +172,10 @@ input:checked + label {
   box-shadow: 5px 5px 20px rgb(255, 255, 255);
 }
 
-.button-restart {
-  border: none;
-  color: #ffcd00;
-  font-family: "Poppins", sans-serif;
-}
-
 .container-attack {
   border-radius: 6px;
-  box-shadow: 0px 1px 10px rgb(255, 255, 255);
   display: grid;
-  gap: 10px;
+  gap: 20px;
   grid-template-columns: 250px 250px;
   margin-top: 10px;
 }
@@ -191,7 +186,8 @@ input:checked + label {
   backdrop-filter: blur(5px);
   background: rgba(255, 255, 255, 0.27);
   border-radius: 6px;
-  color: #356abc;
+  box-shadow: 0px 1px 10px rgb(255, 255, 255);
+  color: white;
   display: flex;
   flex-direction: column;
   font-weight: 700;
@@ -199,10 +195,9 @@ input:checked + label {
 
 #player-pet,
 #enemy-pet {
-  color: #356abc;
-  font-size: 34px;
+  color: black;
+  font-size: 26px;
   font-weight: 700;
-  margin: 10px 0px;
 }
 
 #player-lives,
@@ -214,7 +209,7 @@ input:checked + label {
 
 #player-attack,
 #enemy-attack {
-  color: #356abc;
+  color: black;
   font-size: 24px;
   margin-bottom: 10px;
 }
@@ -224,15 +219,16 @@ input:checked + label {
   backdrop-filter: blur(5px);
   background: rgba(255, 255, 255, 0.27);
   border-radius: 6px;
-  display: flex;
-  flex-direction: column;
-  margin-top: 5px;
-  padding: 10px;
-  width: 510px;
+  box-shadow: 0px 1px 10px rgb(255, 255, 255);
+
+  margin-top: 10px;
 }
 
 #result {
+  color: white;
+  font-size: 18px;
   font-weight: 700;
+  margin: 5px 30px;
 }
 
 @media (max-width: 375px) {
