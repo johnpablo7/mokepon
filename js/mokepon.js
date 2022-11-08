@@ -28,15 +28,15 @@ let inputTorchigueya;
 let playerPet;
 
 let attacksMokepon;
-
-let buttonFire;
-let buttonWater;
-let buttonEarth;
+let enemyMokeponAttacks;
 
 let buttons = [];
 
+let indexPlayerAttack;
+let indexEnemyAttack;
+
 let playerAttack = [];
-let enemyAttack;
+let enemyAttack = [];
 let playerLives = 3;
 let enemyLives = 3;
 
@@ -157,34 +157,26 @@ function showAttacks(attacks) {
     elementsContainer.innerHTML += attacksMokepon;
   });
 
-  buttonFire = document.getElementById("button-fire");
-  buttonWater = document.getElementById("button-water");
-  buttonEarth = document.getElementById("button-earth");
   buttons = document.querySelectorAll(".attack-button");
-  // console.log(buttons);
-
-  // buttonFire.addEventListener("click", fireAttack);
-  // buttonWater.addEventListener("click", waterAttack);
-  // buttonEarth.addEventListener("click", earthAttack);
+  console.log(buttons);
 }
 
 function sequenceAttack() {
   buttons.forEach((button) => {
     button.addEventListener("click", (e) => {
-      // console.log(e);
-      if (e.target.dataset.attackName === "Fuego") {
+      const currentButton = e.currentTarget;
+      if (currentButton.dataset.attackName === "Fuego") {
         playerAttack.push("FUEGO");
-        console.log(playerAttack);
-        button.style.background = "#112f58";
-      } else if (e.target.dataset.attackName === "Agua") {
+        currentButton.style.background = "#112f58";
+      } else if (currentButton.dataset.attackName === "Agua") {
         playerAttack.push("AGUA");
-        console.log(playerAttack);
-        button.style.background = "#112f58";
+        currentButton.style.background = "#112f58";
       } else {
         playerAttack.push("TIERRA");
-        console.log(playerAttack);
-        button.style.background = "#112f58";
+        currentButton.style.background = "#112f58";
       }
+      console.log(playerAttack);
+      enemyAleatoryAttack();
     });
   });
 }
@@ -193,24 +185,45 @@ function selectEnemyPet() {
   let aleatoryPet = aleatory(0, mokepones.length - 1);
 
   spanEnemyPet.innerHTML = mokepones[aleatoryPet].name;
+  enemyMokeponAttacks = mokepones[aleatoryPet].attacks;
   sequenceAttack();
 }
 
 function enemyAleatoryAttack() {
-  let aleatoryAttack = aleatory(1, 3);
+  let aleatoryAttack = aleatory(0, enemyMokeponAttacks.length - 1);
 
-  if (aleatoryAttack == 1) {
-    enemyAttack = "Fuego";
-  } else if (aleatoryAttack == 2) {
-    enemyAttack = "Agua";
+  if (aleatoryAttack == 0 || aleatoryAttack == 1) {
+    enemyAttack.push("FUEGO");
+  } else if (aleatoryAttack == 3 || aleatoryAttack == 4) {
+    enemyAttack.push("AGUA");
   } else {
-    enemyAttack = "Tierra";
+    enemyAttack.push("TIERRA");
   }
+  console.log(enemyAttack);
 
-  battle();
+  startFight();
+}
+
+function startFight() {
+  if (playerAttack.length === 5) {
+    battle();
+  }
+}
+
+function indexBothOpponents(player, enemy) {
+  indexPlayerAttack = enemyAttack[player];
+  indexEnemyAttack = enemyAttack[enemy];
 }
 
 function battle() {
+  for (let i = 0; i < playerAttack.length; i++) {
+    // console.log(playerAttack[i]);
+    if (playerAttack[i] === enemyAttack[i]) {
+      indexBothOpponents(i, i);
+      createMessage("EMPATE");
+    }
+  }
+
   if (playerLives === 0 || enemyLives === 0) {
     return;
   }
@@ -250,8 +263,8 @@ function createMessage(result) {
   let newEnemyAttack = document.createElement("p");
 
   pResult.innerHTML = result;
-  newPlayerAttack.innerHTML = playerAttack;
-  newEnemyAttack.innerHTML = enemyAttack;
+  newPlayerAttack.innerHTML = indexPlayerAttack;
+  newEnemyAttack.innerHTML = indexEnemyAttack;
 
   divPlayerAttack.innerHTML = "";
   divEnemyAttack.innerHTML = "";
@@ -262,9 +275,9 @@ function createMessage(result) {
 
 function createEndMessage(finalScore) {
   pResult.innerHTML = finalScore;
-  buttonFire.disabled = true;
-  buttonWater.disabled = true;
-  buttonEarth.disabled = true;
+  buttons.forEach((button) => {
+    button.disabled = true;
+  });
   sectionRestart.style.display = "block";
 }
 
