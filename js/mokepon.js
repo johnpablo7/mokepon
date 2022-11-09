@@ -243,7 +243,7 @@ function showAttacks(attacks) {
   });
 
   buttons = document.querySelectorAll(".attack-button");
-  console.log(buttons);
+  // console.log(buttons);
 }
 
 function sequenceAttack() {
@@ -277,6 +277,7 @@ function selectEnemyPet() {
   sequenceAttack();
 }
 
+// Esta Hard codeado similar a los ataques del jugador
 function enemyAleatoryAttack() {
   let aleatoryAttack = aleatory(0, enemyMokeponAttacks.length - 1);
 

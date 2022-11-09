@@ -38,11 +38,11 @@ body {
   width: 362px;
 }
 
-.container,
-.elements {
-  display: flex;
-  gap: 40px;
-  max-width: 900px;
+.container {
+  display: grid;
+  gap: 25px;
+  grid-template-columns: 1fr 1fr 1fr;
+  max-width: 670px;
 }
 
 .mokepon-card {
@@ -123,10 +123,11 @@ input:checked + label {
 }
 
 /* esta propiedad se esta compartiendo con la del container */
-/* .elements {
+.elements {
   display: flex;
-  gap: 40px;
-} */
+  gap: 25px;
+  max-width: 670px;
+}
 
 .button-card {
   align-items: center;
