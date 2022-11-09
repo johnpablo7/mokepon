@@ -2,16 +2,11 @@ const sectionSelectAttack = document.getElementById("select-attack");
 const sectionRestart = document.getElementById("restart");
 const buttonSelectPet = document.querySelector(".button-pet");
 const buttonRestart = document.getElementById("button-restart");
-
 const sectionSelectPet = document.getElementById("select-pet");
-
 const spanPlayerPet = document.getElementById("player-pet");
-
 const spanEnemyPet = document.getElementById("enemy-pet");
-
 const spanPlayerLives = document.getElementById("player-lives");
 const spanEnemyLives = document.getElementById("enemy-lives");
-
 const pResult = document.getElementById("result");
 const divPlayerAttack = document.getElementById("player-attack");
 const divEnemyAttack = document.getElementById("enemy-attack");
@@ -20,65 +15,115 @@ const elementsContainer = document.getElementById("elements-container");
 
 let mokepones = [];
 let mokeponsOption;
-
 let inputHipodoge;
 let inputCapipepo;
 let inputTorchigueya;
-
+let inputLangostelvis;
+let inputTucapalma;
+let inputPydos;
 let playerPet;
+let playerAttackType;
 
+let playerSaveAttacks;
 let attacksMokepon;
 let enemyMokeponAttacks;
-
 let buttons = [];
-
 let indexPlayerAttack;
 let indexEnemyAttack;
-
+let playerWin = 0;
+let enemyWin = 0;
 let playerAttack = [];
 let enemyAttack = [];
 let playerLives = 3;
 let enemyLives = 3;
 
 class Mokepon {
-  constructor(name, image, live) {
+  constructor(name, image, live, type) {
     this.name = name;
     this.image = image;
     this.live = live;
+    this.type = type;
     this.attacks = [];
   }
 }
 
-let hipodoge = new Mokepon("Hipodoge", "../assets/hipodoge.png", 5);
-let capipepo = new Mokepon("Capipepo", "../assets/capipepo.png", 5);
-let torchigueya = new Mokepon("Torchigueya", "../assets/torchigueya.png", 5);
+const WATER = "Agua";
+const FIRE = "Fuego";
+const EARTH = "Tierra";
+
+const emojis = {
+  [WATER]: "💧",
+  [FIRE]: "🔥",
+  [EARTH]: "🌱",
+};
+
+let hipodoge = new Mokepon("Hipodoge", "../assets/hipodoge.png", 5, EARTH);
+let capipepo = new Mokepon("Capipepo", "../assets/capipepo.png", 5, WATER);
+let torchigueya = new Mokepon(
+  "Torchigueya",
+  "../assets/torchigueya.png",
+  5,
+  FIRE
+);
+let langostelvis = new Mokepon(
+  "Langostelvis",
+  "../assets/langostelvis.png",
+  5,
+  FIRE
+);
+let tucapalma = new Mokepon("Tucapalma", "../assets/tucapalma.png", 5, EARTH);
+let pydos = new Mokepon("Pydos", "../assets/pydos.png", 5, WATER);
 // console.log(hipodoge);
 
 hipodoge.attacks.push(
-  { name: "Tierra", id: "button-earth", image: "../assets/medalla-tierra.png" },
-  { name: "Tierra", id: "button-earth", image: "../assets/medalla-tierra.png" },
-  { name: "Tierra", id: "button-earth", image: "../assets/medalla-tierra.png" },
-  { name: "Fuego", id: "button-fire", image: "../assets/medalla-fuego.png" },
-  { name: "Agua", id: "button-water", image: "../assets/medalla-agua.png" }
+  { name: EARTH, id: "button-earth", image: "../assets/medalla-tierra.png" },
+  { name: EARTH, id: "button-earth", image: "../assets/medalla-tierra.png" },
+  { name: EARTH, id: "button-earth", image: "../assets/medalla-tierra.png" },
+  { name: FIRE, id: "button-fire", image: "../assets/medalla-fuego.png" },
+  { name: WATER, id: "button-water", image: "../assets/medalla-agua.png" }
 );
 
 capipepo.attacks.push(
-  { name: "Agua", id: "button-water", image: "../assets/medalla-agua.png" },
-  { name: "Agua", id: "button-water", image: "../assets/medalla-agua.png" },
-  { name: "Agua", id: "button-water", image: "../assets/medalla-agua.png" },
-  { name: "Tierra", id: "button-earth", image: "../assets/medalla-tierra.png" },
-  { name: "Fuego", id: "button-fire", image: "../assets/medalla-fuego.png" }
+  { name: WATER, id: "button-water", image: "../assets/medalla-agua.png" },
+  { name: WATER, id: "button-water", image: "../assets/medalla-agua.png" },
+  { name: WATER, id: "button-water", image: "../assets/medalla-agua.png" },
+  { name: EARTH, id: "button-earth", image: "../assets/medalla-tierra.png" },
+  { name: FIRE, id: "button-fire", image: "../assets/medalla-fuego.png" }
 );
 
 torchigueya.attacks.push(
-  { name: "Fuego", id: "button-fire", image: "../assets/medalla-fuego.png" },
-  { name: "Fuego", id: "button-fire", image: "../assets/medalla-fuego.png" },
-  { name: "Fuego", id: "button-fire", image: "../assets/medalla-fuego.png" },
-  { name: "Tierra", id: "button-earth", image: "../assets/medalla-tierra.png" },
-  { name: "Agua", id: "button-water", image: "../assets/medalla-agua.png" }
+  { name: FIRE, id: "button-fire", image: "../assets/medalla-fuego.png" },
+  { name: FIRE, id: "button-fire", image: "../assets/medalla-fuego.png" },
+  { name: FIRE, id: "button-fire", image: "../assets/medalla-fuego.png" },
+  { name: EARTH, id: "button-earth", image: "../assets/medalla-tierra.png" },
+  { name: WATER, id: "button-water", image: "../assets/medalla-agua.png" }
 );
 
-mokepones.push(hipodoge, capipepo, torchigueya);
+langostelvis.attacks.push(
+  { name: FIRE, id: "button-fire", image: "../assets/medalla-fuego.png" },
+  { name: FIRE, id: "button-fire", image: "../assets/medalla-fuego.png" },
+  { name: FIRE, id: "button-fire", image: "../assets/medalla-fuego.png" },
+  { name: EARTH, id: "button-earth", image: "../assets/medalla-tierra.png" },
+  { name: WATER, id: "button-water", image: "../assets/medalla-agua.png" }
+);
+
+tucapalma.attacks.push(
+  { name: EARTH, id: "button-earth", image: "../assets/medalla-tierra.png" },
+  { name: EARTH, id: "button-earth", image: "../assets/medalla-tierra.png" },
+  { name: EARTH, id: "button-earth", image: "../assets/medalla-tierra.png" },
+  { name: FIRE, id: "button-fire", image: "../assets/medalla-fuego.png" },
+  { name: WATER, id: "button-water", image: "../assets/medalla-agua.png" }
+);
+
+pydos.attacks.push(
+  { name: WATER, id: "button-water", image: "../assets/medalla-agua.png" },
+  { name: WATER, id: "button-water", image: "../assets/medalla-agua.png" },
+  { name: WATER, id: "button-water", image: "../assets/medalla-agua.png" },
+  { name: EARTH, id: "button-earth", image: "../assets/medalla-tierra.png" },
+  { name: FIRE, id: "button-fire", image: "../assets/medalla-fuego.png" }
+);
+
+mokepones.push(hipodoge, capipepo, torchigueya, langostelvis, tucapalma, pydos);
 // console.log(mokepones);
 
 function startGame() {
@@ -102,6 +147,9 @@ function startGame() {
     inputHipodoge = document.getElementById("Hipodoge");
     inputCapipepo = document.getElementById("Capipepo");
     inputTorchigueya = document.getElementById("Torchigueya");
+    inputLangostelvis = document.getElementById("Langostelvis");
+    inputTucapalma = document.getElementById("Tucapalma");
+    inputPydos = document.getElementById("Pydos");
   });
 
   buttonSelectPet.addEventListener("click", selectPlayerPet);
@@ -109,38 +157,75 @@ function startGame() {
 }
 
 function selectPlayerPet() {
-  sectionSelectPet.style.display = "none";
-  sectionSelectAttack.style.display = "flex";
+  let indicator = 0;
+  if (
+    inputHipodoge.checked ||
+    inputCapipepo.checked ||
+    inputTorchigueya.checked ||
+    inputLangostelvis.checked ||
+    inputTucapalma.checked ||
+    inputPydos.checked
+  ) {
+    sectionSelectPet.style.display = "none";
+    sectionSelectAttack.style.display = "flex";
+    indicator = 1;
+  }
 
   if (inputHipodoge.checked) {
     spanPlayerPet.innerHTML = inputHipodoge.id;
     playerPet = inputHipodoge.id;
+    playerAttackType = hipodoge.tipo;
+    playerSaveAttacks = hipodoge.attacks;
   } else if (inputCapipepo.checked) {
     spanPlayerPet.innerHTML = inputCapipepo.id;
     playerPet = inputCapipepo.id;
+    playerAttackType = capipepo.tipo;
+    playerSaveAttacks = capipepo.attacks;
   } else if (inputTorchigueya.checked) {
     spanPlayerPet.innerHTML = inputTorchigueya.id;
     playerPet = inputTorchigueya.id;
+    playerAttackType = torchigueya.tipo;
+    playerSaveAttacks = torchigueya.attacks;
+  } else if (inputLangostelvis.checked) {
+    spanPlayerPet.innerHTML = inputLangostelvis.id;
+    playerPet = inputLangostelvis.id;
+    playerAttackType = langostelvis.tipo;
+    playerSaveAttacks = langostelvis.attacks;
+  } else if (inputTucapalma.checked) {
+    spanPlayerPet.innerHTML = inputTucapalma.id;
+    playerPet = inputTucapalma.id;
+    playerAttackType = tucapalma.tipo;
+    playerSaveAttacks = tucapalma.attacks;
+  } else if (inputPydos.checked) {
+    spanPlayerPet.innerHTML = inputPydos.id;
+    playerPet = inputPydos.id;
+    playerAttackType = pydos.tipo;
+    playerSaveAttacks = pydos.attacks;
   } else {
     alert("Seleccione un mokepon");
     sectionSelectPet.style.display = "flex";
     sectionSelectAttack.style.display = "none";
   }
+  if (indicator === 1) {
+    selectEnemyPet();
+  }
 
   extractAttacks(playerPet);
-  selectEnemyPet();
 }
 
 function extractAttacks(playerPet) {
   let attacks;
+  let type;
+
   for (let i = 0; i < mokepones.length; i++) {
     if (playerPet === mokepones[i].name) {
       attacks = mokepones[i].attacks;
+      type = mokepones[i].type;
     }
   }
 
-  // console.log(attacks);
-  showAttacks(attacks);
+  // console.log(type);
+  showAttacks(attacks, type);
 }
 
 function showAttacks(attacks) {
@@ -165,15 +250,18 @@ function sequenceAttack() {
   buttons.forEach((button) => {
     button.addEventListener("click", (e) => {
       const currentButton = e.currentTarget;
-      if (currentButton.dataset.attackName === "Fuego") {
-        playerAttack.push("FUEGO");
-        currentButton.style.background = "#112f58";
-      } else if (currentButton.dataset.attackName === "Agua") {
-        playerAttack.push("AGUA");
-        currentButton.style.background = "#112f58";
+      if (currentButton.dataset.attackName === FIRE) {
+        playerAttack.push(FIRE);
+        currentButton.style.background = "#edf2f4";
+        button.disabled = true;
+      } else if (currentButton.dataset.attackName === WATER) {
+        playerAttack.push(WATER);
+        currentButton.style.background = "#edf2f4";
+        button.disabled = true;
       } else {
-        playerAttack.push("TIERRA");
-        currentButton.style.background = "#112f58";
+        playerAttack.push(EARTH);
+        currentButton.style.background = "#edf2f4";
+        button.disabled = true;
       }
       console.log(playerAttack);
       enemyAleatoryAttack();
@@ -193,11 +281,11 @@ function enemyAleatoryAttack() {
   let aleatoryAttack = aleatory(0, enemyMokeponAttacks.length - 1);
 
   if (aleatoryAttack == 0 || aleatoryAttack == 1) {
-    enemyAttack.push("FUEGO");
+    enemyAttack.push(FIRE);
   } else if (aleatoryAttack == 3 || aleatoryAttack == 4) {
-    enemyAttack.push("AGUA");
+    enemyAttack.push(WATER);
   } else {
-    enemyAttack.push("TIERRA");
+    enemyAttack.push(EARTH);
   }
   console.log(enemyAttack);
 
@@ -210,50 +298,53 @@ function startFight() {
   }
 }
 
-function indexBothOpponents(player, enemy) {
-  indexPlayerAttack = enemyAttack[player];
+function indexBothOpponent(player, enemy) {
+  indexPlayerAttack = playerAttack[player];
   indexEnemyAttack = enemyAttack[enemy];
+
+  indexPlayerAttack += " " + emojis[indexPlayerAttack];
+  indexEnemyAttack += " " + emojis[indexEnemyAttack];
 }
 
 function battle() {
+  console.log(playerAttack, enemyAttack);
   for (let i = 0; i < playerAttack.length; i++) {
     // console.log(playerAttack[i]);
     if (playerAttack[i] === enemyAttack[i]) {
-      indexBothOpponents(i, i);
+      indexBothOpponent(i, i);
       createMessage("EMPATE");
+    } else if (playerAttack[i] === FIRE && enemyAttack[i] === EARTH) {
+      indexBothOpponent(i, i);
+      createMessage("GANASTE");
+      playerWin++;
+      spanPlayerLives.innerHTML = playerWin;
+    } else if (playerAttack[i] === WATER && enemyAttack[i] === FIRE) {
+      indexBothOpponent(i, i);
+      createMessage("GANASTE");
+      playerWin++;
+      spanPlayerLives.innerHTML = playerWin;
+    } else if (playerAttack[i] === EARTH && enemyAttack[i] === WATER) {
+      indexBothOpponent(i, i);
+      createMessage("GANASTE");
+      playerWin++;
+      spanPlayerLives.innerHTML = playerWin;
+    } else {
+      indexBothOpponent(i, i);
+      createMessage("PERDISTE");
+      enemyWin++;
+      spanEnemyLives.innerHTML = enemyWin;
     }
-  }
-
-  if (playerLives === 0 || enemyLives === 0) {
-    return;
-  }
-
-  spanPlayerLives.innerHTML = playerLives;
-  spanEnemyLives.innerHTML = enemyLives;
-
-  if (enemyAttack == playerAttack) {
-    createMessage("EMPATE");
-  } else if (
-    (playerAttack == "Fuego" && enemyAttack == "Tierra") ||
-    (playerAttack == "Agua" && enemyAttack == "Fuego") ||
-    (playerAttack == "Tierra" && enemyAttack == "Agua")
-  ) {
-    createMessage("GANASTE");
-    enemyLives--;
-    spanEnemyLives.innerHTML = enemyLives;
-  } else {
-    createMessage("PERDISTE");
-    playerLives--;
-    spanPlayerLives.innerHTML = playerLives;
   }
 
   reviewLives();
 }
 
 function reviewLives() {
-  if (enemyLives == 0) {
+  if (playerWin === enemyWin) {
+    createEndMessage("¡EMPATE! intentalo de nuevo 🎮");
+  } else if (playerWin > enemyWin) {
     createEndMessage("¡FELICITACIONES! Ganaste ✨");
-  } else if (playerLives == 0) {
+  } else {
     createEndMessage("¡LO SIENTO! perdiste 💀");
   }
 }
@@ -266,8 +357,8 @@ function createMessage(result) {
   newPlayerAttack.innerHTML = indexPlayerAttack;
   newEnemyAttack.innerHTML = indexEnemyAttack;
 
-  divPlayerAttack.innerHTML = "";
-  divEnemyAttack.innerHTML = "";
+  // divPlayerAttack.innerHTML = "";
+  // divEnemyAttack.innerHTML = "";
 
   divPlayerAttack.appendChild(newPlayerAttack);
   divEnemyAttack.appendChild(newEnemyAttack);
@@ -275,9 +366,10 @@ function createMessage(result) {
 
 function createEndMessage(finalScore) {
   pResult.innerHTML = finalScore;
-  buttons.forEach((button) => {
-    button.disabled = true;
-  });
+
+  // buttons.forEach((button) => {
+  //   button.disabled = true;
+  // });
   sectionRestart.style.display = "block";
 }
 
